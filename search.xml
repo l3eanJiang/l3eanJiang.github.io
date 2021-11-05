@@ -1,9 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Windows装机常用软件</title>
+    <url>/2021/11/05/Windows%E8%A3%85%E6%9C%BA%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="有时需要重装下系统，记录一下常用软件，以便查找"><a href="#有时需要重装下系统，记录一下常用软件，以便查找" class="headerlink" title="有时需要重装下系统，记录一下常用软件，以便查找"></a>有时需要重装下系统，记录一下常用软件，以便查找</h2><hr>
+<h3 id="系统工具类"><a href="#系统工具类" class="headerlink" title="系统工具类"></a>系统工具类</h3><ul>
+<li><p><a href="https://chocolatey.org/">Chocolatey</a></p>
+<blockquote>
+<p>命令行安装软件，很方便。安装各种开发工具，免环境变量配置，脚本一键安装。缺点是部分软件及脚本需要科学上网。说实话win平台的包管理器不大好使，毕竟大多数软件第一次安装后，就不用再用包管理器进行升级或者卸载，因为他们多数都是自动升级。所以win平台目前还是自己去个软件官网下载安装包自行安装。<br>同类型软件有<a href="https://github.com/ScoopInstaller/Scoop">scoop</a>和微软的<a href="https://github.com/microsoft/winget-cli">winget</a></p>
+</blockquote>
+</li>
+<li><p><a href="https://www.bandisoft.com/honeyview/">Honeyview</a></p>
+<blockquote>
+<p>但凡微软自带的好用点，也不需要它了。只需要简简单单的浏览图片，非常快速！</p>
+</blockquote>
+</li>
+<li><p><a href="https://github.com/2dust/v2rayN">v2rayN</a></p>
+<blockquote>
+<p>少年你需要魔法吗？</p>
+</blockquote>
+</li>
+<li><p><a href="https://zh.snipaste.com/">Snipaste</a></p>
+<blockquote>
+<p>好用且强大的截图工具</p>
+</blockquote>
+</li>
+<li><p><a href="https://www.7-zip.org/download.html">7-zip</a></p>
+<blockquote>
+<p>压缩工具</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="开发相关"><a href="#开发相关" class="headerlink" title="开发相关"></a>开发相关</h3><ul>
+<li><p><a href="https://git-scm.com/downloads">Git</a></p>
+<blockquote>
+<p>版本管理工具</p>
+</blockquote>
+</li>
+<li><p><a href="https://code.visualstudio.com/">Visual Studio Code</a></p>
+<blockquote>
+<p>轻量编辑器，各种插件集成后，功能非常强大</p>
+</blockquote>
+</li>
+<li><p><a href="https://www.jetbrains.com/toolbox-app/">JetBrains Toolbox</a></p>
+<blockquote>
+<p>JetBrain全家桶管理工具，方便下载管理JB全家桶</p>
+</blockquote>
+</li>
+<li><p><a href="https://nodejs.org/zh-cn/">Nodejs</a></p>
+<blockquote>
+<p>基于 Chrome V8 引擎 的 JavaScript 运行时环境，前端必备了</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="娱乐"><a href="#娱乐" class="headerlink" title="娱乐"></a>娱乐</h3><ul>
+<li><p><a href="https://mpv.io/">mpv</a></p>
+<blockquote>
+<p>首选！非常简洁干净的高清播放器，使用配置文件设置。备选<a href="https://potplayer.daum.net/">potPlayer</a></p>
+</blockquote>
+</li>
+<li><p><a href="https://y.qq.com/download/download.html">QQ音乐</a></p>
+<blockquote>
+<p>唉~谁让网易云不争气呢！</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+]]></content>
+      <tags>
+        <tag>软件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo简单命令操作</title>
     <url>/2021/07/28/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
