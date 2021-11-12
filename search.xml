@@ -20,13 +20,13 @@
 ]]></content>
       <tags>
         <tag>测试</tag>
-        <tag>test</tag>
       </tags>
   </entry>
   <entry>
     <title>Windows装机常用软件</title>
     <url>/2021/11/05/Windows%E8%A3%85%E6%9C%BA%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="有时需要重装下系统，记录一下常用软件，以便查找"><a href="#有时需要重装下系统，记录一下常用软件，以便查找" class="headerlink" title="有时需要重装下系统，记录一下常用软件，以便查找"></a>有时需要重装下系统，记录一下常用软件，以便查找</h2><hr>
+    <content><![CDATA[<h2 id="有时需要重装下系统，记录一下常用软件，以便查找"><a href="#有时需要重装下系统，记录一下常用软件，以便查找" class="headerlink" title="有时需要重装下系统，记录一下常用软件，以便查找"></a>有时需要重装下系统，记录一下常用软件，以便查找</h2><span id="more"></span>
+<hr>
 <h3 id="系统工具类"><a href="#系统工具类" class="headerlink" title="系统工具类"></a>系统工具类</h3><ul>
 <li><p><a href="https://chocolatey.org/">Chocolatey</a></p>
 <blockquote>
@@ -104,6 +104,20 @@
 ]]></content>
       <tags>
         <tag>软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue子组件中antv图表动态更新</title>
+    <url>/2021/11/12/vue%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%ADantv%E5%9B%BE%E8%A1%A8%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</url>
+    <content><![CDATA[<p>今天遇到个问题，一进页面，子组件中的antv图表并没有渲染出来。检查理一下发现问题是，父页面异步请求的图表数据，页面渲染完成时antv绘制时还没有获取到数据。  </p>
+<span id="more"></span>
+<p>子组件代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;BatteryStatus&#x27;</span>,</span><br><span class="line">  <span class="attr">props</span>: &#123;</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="built_in">Array</span>,</span><br><span class="line">      <span class="attr">default</span>: <span class="function">() =&gt;</span> []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">chart</span>: <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">watch</span>: &#123;</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">deep</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">immediate</span>: <span class="literal">true</span>,</span><br><span class="line">      handler () &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.chart) &#123;</span><br><span class="line">          <span class="built_in">this</span>.renderChart()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    renderChart () &#123;</span><br><span class="line">      <span class="built_in">this</span>.chart.data(<span class="built_in">this</span>.data)</span><br><span class="line">      <span class="built_in">this</span>.chart.render()</span><br><span class="line">    &#125;,</span><br><span class="line">    initChart () &#123;</span><br><span class="line">      <span class="built_in">this</span>.chart = <span class="keyword">new</span> Chart(&#123;</span><br><span class="line">        <span class="attr">container</span>: <span class="string">&#x27;batteryStatusChart&#x27;</span>,</span><br><span class="line">        <span class="attr">autoFit</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">height</span>: <span class="number">250</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted () &#123;</span><br><span class="line">    <span class="built_in">this</span>.initChart()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解决办法:<br>在子组件的props接受的data数据加上一个监听，数据变化后重新渲染图表</p>
+]]></content>
+      <tags>
+        <tag>Bug</tag>
+        <tag>antv</tag>
       </tags>
   </entry>
 </search>
