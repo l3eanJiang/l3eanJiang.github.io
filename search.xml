@@ -85,6 +85,19 @@
       </tags>
   </entry>
   <entry>
+    <title>antv/g2图表渐变色设置</title>
+    <url>/2021/12/24/antv-g2%E5%9B%BE%E8%A1%A8%E6%B8%90%E5%8F%98%E8%89%B2%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<p>今天大屏开发，需要调整g2的图表样式以适用整体色调，需要对<code>chart.area()</code>面积图做渐变色处理。可是按照官方文档的说明配置始终出不来效果，查阅了一些资料，参考别的代码，找到正确的配置（也许官方文档有说明，可我实在是找不着）。</p>
+<span id="more"></span>  
+<p>以下是官方文档说明</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// data: [&#123; x: &#x27;A&#x27;, y: 10, color: &#x27;red&#x27; &#125;, &#123; x: &#x27;B&#x27;, y: 30, color: &#x27;yellow&#x27; &#125;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 &#x27;#1890ff&#x27; 颜色渲染图形</span></span><br><span class="line">geometry.color(<span class="string">&#x27;#1890ff&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据 x 字段的数据值进行颜色的映射，这时候 G2 会在内部调用默认的回调函数，读取默认提供的颜色进行数据值到颜色值的映射。</span></span><br><span class="line">geometry.color(<span class="string">&#x27;x&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将 &#x27;x&#x27; 字段的数据值映射至指定的颜色值 colors（可以是字符串也可以是数组），此时用于通常映射分类数据</span></span><br><span class="line">geometry.color(<span class="string">&#x27;x&#x27;</span>, [<span class="string">&#x27;#1890ff&#x27;</span>, <span class="string">&#x27;#5AD8A6&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用回调函数进行颜色值的自定义；可以使用多个字段使用、*号连接</span></span><br><span class="line">geometry.color(<span class="string">&#x27;x&#x27;</span>, <span class="function">(<span class="params">xVal</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xVal === <span class="string">&#x27;a&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;red&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;blue&#x27;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定颜色的渐变路径，用于映射连续的数据</span></span><br><span class="line">geometry.color(<span class="string">&#x27;x&#x27;</span>, <span class="string">&#x27;#BAE7FF-#1890FF-#0050B3&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>一开始使用<code>geometry.color(&#39;#BAE7FF-#1890FF-#0050B3&#39;)</code>，无效整个颜色变灰了。<br>正确的配置如下：<br><code>geometry.color(&#39;l(0) 0:#BAE7FF 0.5:#1890FF 1:#0050B3&#39;)</code><br>其中<code>l()</code>中的值为渐变方向，初始为0，即从左向右→，90即方向从0顺时针转90°，以此类推。后面的值就比较容易理解了，即按百分比设置不同颜色。</p>
+]]></content>
+      <tags>
+        <tag>antv</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo简单命令操作</title>
     <url>/2021/07/28/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -116,8 +129,8 @@
 <p>解决办法:<br>在子组件的props接受的data数据加上一个监听，数据变化后重新渲染图表</p>
 ]]></content>
       <tags>
-        <tag>Bug</tag>
         <tag>antv</tag>
+        <tag>Bug</tag>
       </tags>
   </entry>
 </search>
