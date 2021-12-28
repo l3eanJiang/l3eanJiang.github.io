@@ -133,4 +133,18 @@
         <tag>Bug</tag>
       </tags>
   </entry>
+  <entry>
+    <title>uniapp开发小程序使用iconfont彩色图标</title>
+    <url>/2021/12/28/uniapp%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BD%BF%E7%94%A8iconfont%E5%BD%A9%E8%89%B2%E5%9B%BE%E6%A0%87/</url>
+    <content><![CDATA[<p>最开始，按照Font class的方式导入iconfont的图标，结果无法展示多色的图标。尝试svg后发现，发现小程序不支持svg标签。<br>目前找到的解决方法如下：  </p>
+<span id="more"></span>  
+<p>借助<a href="https://github.com/HuaRongSAO/iconfont-tools#readme">iconfont-tools</a>工具生成通用的css文件，然后直接导入进项目中，直接使用class名即可。具体使用按照工具说明即可。<br>看了下生成的css，本质是把iconfont的svg转为css，即转为<code>background-image</code>的url中使用data类型数据<code>data:image/svg+xml</code>,也就是说图标为元素的背景。</p>
+]]></content>
+      <tags>
+        <tag>uniapp</tag>
+        <tag>小程序</tag>
+        <tag>微信</tag>
+        <tag>iconfont</tag>
+      </tags>
+  </entry>
 </search>
