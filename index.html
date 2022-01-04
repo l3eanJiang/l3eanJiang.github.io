@@ -163,13 +163,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -199,6 +199,91 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://l3eanjiang.github.io/2022/01/04/uniapp%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%9C%86%E5%BD%A2%E8%BF%9B%E5%BA%A6%E6%9D%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="l3eanJiang">
+      <meta itemprop="description" content="来！吃肉啊！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="A Coder">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/04/uniapp%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%9C%86%E5%BD%A2%E8%BF%9B%E5%BA%A6%E6%9D%A1/" class="post-title-link" itemprop="url">uniapp小程序圆形进度条</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-01-04 18:16:51 / 修改时间：18:33:06" itemprop="dateCreated datePublished" datetime="2022-01-04T18:16:51+08:00">2022-01-04</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    
+      <a title="changyan" href="/2022/01/04/uniapp%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%9C%86%E5%BD%A2%E8%BF%9B%E5%BA%A6%E6%9D%A1/#SOHUCS" itemprop="discussionUrl">
+        <span id="url::https://l3eanjiang.github.io/2022/01/04/uniapp%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%9C%86%E5%BD%A2%E8%BF%9B%E5%BA%A6%E6%9D%A1/" class="cy_cmt_count" data-xid="2022/01/04/uniapp小程序圆形进度条/" itemprop="commentCount"></span>
+      </a>
+    
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>一开始使用uview里的进度条组件，真机测试发现滑动页面时，进度条浮于页面顶层。一看代码发现，uview的组件使用的是canvas，作为小程序的原生组件是最顶层的，只好自己使用css写个进度条组件。原理参考这篇<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012655551">文章</a>。<br>页面代码如下  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">:class</span>=<span class="string">&quot;[&#x27;circle-bar&#x27;, type]&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;left-container&quot;</span> <span class="attr">:style</span>=<span class="string">&quot;&#123; transform: &#x27;rotate(&#x27; + leftRotateDeg + &#x27;deg)&#x27; &#125;&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;half-circle-left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;right-container&quot;</span> <span class="attr">:style</span>=<span class="string">&quot;&#123; transform: &#x27;rotate(&#x27; + rightRotateDeg + &#x27;deg)&#x27; &#125;&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">view</span> <span class="attr">:class</span>=<span class="string">&quot;[&#x27;half-circle-right&#x27;, percent &gt; 50 ? type : &#x27;&#x27;]&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;mask&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>js处代码  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;circleProgress&quot;</span>,</span><br><span class="line">  <span class="attr">props</span>: &#123;</span><br><span class="line">    <span class="attr">percent</span>: <span class="built_in">String</span>,</span><br><span class="line">    <span class="attr">type</span>: <span class="built_in">String</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">computed</span>: &#123;</span><br><span class="line">    <span class="function"><span class="title">leftRotateDeg</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> rotateDeg = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">this</span>.percent &gt; <span class="number">50</span>) &#123;</span><br><span class="line">        rotateDeg = (<span class="built_in">this</span>.percent - <span class="number">50</span>) * <span class="number">3.6</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> rotateDeg</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">rightRotateDeg</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> rotateDeg = <span class="built_in">this</span>.percent * <span class="number">3.6</span>;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">this</span>.percent &gt; <span class="number">50</span>) &#123;</span><br><span class="line">        rotateDeg = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> rotateDeg</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">mounted</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.rightRotate);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>组件接受percent参数，computed处左右半圆旋转角度。此处遇到一个坑，一开始我直接绑定的computed出的style对象，发现不行，我也不知道为啥。将style对象写在template里就行。原文章使用js操作元素，既然使用vue，按照数据驱动页面的思想来写比较好，用Vue来操作class和style来展示页面。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -634,7 +719,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
