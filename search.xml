@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>antv/g2图表渐变色设置</title>
+    <url>/2021/12/24/antv-g2%E5%9B%BE%E8%A1%A8%E6%B8%90%E5%8F%98%E8%89%B2%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<p>今天大屏开发，需要调整g2的图表样式以适用整体色调，需要对<code>chart.area()</code>面积图做渐变色处理。可是按照官方文档的说明配置始终出不来效果，查阅了一些资料，参考别的代码，找到正确的配置（也许官方文档有说明，可我实在是找不着）。</p>
+<span id="more"></span>  
+<p>以下是官方文档说明</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// data: [&#123; x: &#x27;A&#x27;, y: 10, color: &#x27;red&#x27; &#125;, &#123; x: &#x27;B&#x27;, y: 30, color: &#x27;yellow&#x27; &#125;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 &#x27;#1890ff&#x27; 颜色渲染图形</span></span><br><span class="line">geometry.color(<span class="string">&#x27;#1890ff&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据 x 字段的数据值进行颜色的映射，这时候 G2 会在内部调用默认的回调函数，读取默认提供的颜色进行数据值到颜色值的映射。</span></span><br><span class="line">geometry.color(<span class="string">&#x27;x&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将 &#x27;x&#x27; 字段的数据值映射至指定的颜色值 colors（可以是字符串也可以是数组），此时用于通常映射分类数据</span></span><br><span class="line">geometry.color(<span class="string">&#x27;x&#x27;</span>, [<span class="string">&#x27;#1890ff&#x27;</span>, <span class="string">&#x27;#5AD8A6&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用回调函数进行颜色值的自定义；可以使用多个字段使用、*号连接</span></span><br><span class="line">geometry.color(<span class="string">&#x27;x&#x27;</span>, <span class="function">(<span class="params">xVal</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (xVal === <span class="string">&#x27;a&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;red&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;blue&#x27;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定颜色的渐变路径，用于映射连续的数据</span></span><br><span class="line">geometry.color(<span class="string">&#x27;x&#x27;</span>, <span class="string">&#x27;#BAE7FF-#1890FF-#0050B3&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>一开始使用<code>geometry.color(&#39;#BAE7FF-#1890FF-#0050B3&#39;)</code>，无效整个颜色变灰了。<br>正确的配置如下：<br><code>geometry.color(&#39;l(0) 0:#BAE7FF 0.5:#1890FF 1:#0050B3&#39;)</code><br>其中<code>l()</code>中的值为渐变方向，初始为0，即从左向右→，90即方向从0顺时针转90°，以此类推。后面的值就比较容易理解了，即按百分比设置不同颜色。</p>
+]]></content>
+      <tags>
+        <tag>antv</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo简单命令操作</title>
+    <url>/2023/06/21/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>uniapp小程序圆形进度条</title>
+    <url>/2022/01/04/uniapp%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%9C%86%E5%BD%A2%E8%BF%9B%E5%BA%A6%E6%9D%A1/</url>
+    <content><![CDATA[<p>一开始使用uview里的进度条组件，真机测试发现滑动页面时，进度条浮于页面顶层。一看代码发现，uview的组件使用的是canvas，作为小程序的原生组件是最顶层的，只好自己使用css写个进度条组件。原理参考这篇<a href="https://segmentfault.com/a/1190000012655551">文章</a>。<br>页面代码如下  </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">:class</span>=<span class="string">&quot;[&#x27;circle-bar&#x27;, type]&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;left-container&quot;</span> <span class="attr">:style</span>=<span class="string">&quot;&#123; transform: &#x27;rotate(&#x27; + leftRotateDeg + &#x27;deg)&#x27; &#125;&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;half-circle-left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;right-container&quot;</span> <span class="attr">:style</span>=<span class="string">&quot;&#123; transform: &#x27;rotate(&#x27; + rightRotateDeg + &#x27;deg)&#x27; &#125;&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">view</span> <span class="attr">:class</span>=<span class="string">&quot;[&#x27;half-circle-right&#x27;, percent &gt; 50 ? type : &#x27;&#x27;]&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;mask&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>js处代码  </p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;circleProgress&quot;</span>,</span><br><span class="line">  <span class="attr">props</span>: &#123;</span><br><span class="line">    <span class="attr">percent</span>: <span class="built_in">String</span>,</span><br><span class="line">    <span class="attr">type</span>: <span class="built_in">String</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">computed</span>: &#123;</span><br><span class="line">    <span class="function"><span class="title">leftRotateDeg</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> rotateDeg = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">this</span>.percent &gt; <span class="number">50</span>) &#123;</span><br><span class="line">        rotateDeg = (<span class="built_in">this</span>.percent - <span class="number">50</span>) * <span class="number">3.6</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> rotateDeg</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">rightRotateDeg</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> rotateDeg = <span class="built_in">this</span>.percent * <span class="number">3.6</span>;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">this</span>.percent &gt; <span class="number">50</span>) &#123;</span><br><span class="line">        rotateDeg = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> rotateDeg</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">mounted</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.rightRotate);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>组件接受percent参数，computed处左右半圆旋转角度。此处遇到一个坑，一开始我直接绑定的computed出的style对象，发现不行，我也不知道为啥。将style对象写在template里就行。原文章使用js操作元素，既然使用vue，按照数据驱动页面的思想来写比较好，用Vue来操作class和style来展示页面。</p>
+]]></content>
+      <tags>
+        <tag>uniapp</tag>
+        <tag>小程序</tag>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows装机常用软件</title>
+    <url>/2021/11/05/Windows%E8%A3%85%E6%9C%BA%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="有时需要重装下系统，记录一下常用软件，以便查找"><a href="#有时需要重装下系统，记录一下常用软件，以便查找" class="headerlink" title="有时需要重装下系统，记录一下常用软件，以便查找"></a>有时需要重装下系统，记录一下常用软件，以便查找</h2><span id="more"></span>
+<hr>
+<h3 id="系统工具类"><a href="#系统工具类" class="headerlink" title="系统工具类"></a>系统工具类</h3><ul>
+<li><p><a href="https://chocolatey.org/">Chocolatey</a></p>
+<blockquote>
+<p>命令行安装软件，很方便。安装各种开发工具，免环境变量配置，脚本一键安装。缺点是部分软件及脚本需要科学上网。说实话win平台的包管理器不大好使，毕竟大多数软件第一次安装后，就不用再用包管理器进行升级或者卸载，因为他们多数都是自动升级。所以win平台目前还是自己去个软件官网下载安装包自行安装。<br>同类型软件有<a href="https://github.com/ScoopInstaller/Scoop">scoop</a>和微软的<a href="https://github.com/microsoft/winget-cli">winget</a></p>
+</blockquote>
+</li>
+<li><p><a href="https://www.bandisoft.com/honeyview/">Honeyview</a></p>
+<blockquote>
+<p>但凡微软自带的好用点，也不需要它了。只需要简简单单的浏览图片，非常快速！</p>
+</blockquote>
+</li>
+<li><p><a href="https://github.com/2dust/v2rayN">v2rayN</a></p>
+<blockquote>
+<p>少年你需要魔法吗？</p>
+</blockquote>
+</li>
+<li><p><a href="https://zh.snipaste.com/">Snipaste</a></p>
+<blockquote>
+<p>好用且强大的截图工具</p>
+</blockquote>
+</li>
+<li><p><a href="https://www.7-zip.org/download.html">7-zip</a></p>
+<blockquote>
+<p>压缩工具</p>
+</blockquote>
+</li>
+<li><p><a href="https://www.qbittorrent.org/download.php">Qbittorrent</a></p>
+<blockquote>
+<p>磁力下载工具</p>
+</blockquote>
+</li>
+<li><p><a href="https://motrix.app/">Motrix</a></p>
+<blockquote>
+<p>基于aria的多功能下载工具(除ed2k)</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="开发相关"><a href="#开发相关" class="headerlink" title="开发相关"></a>开发相关</h3><ul>
+<li><p><a href="https://git-scm.com/downloads">Git</a></p>
+<blockquote>
+<p>版本管理工具</p>
+</blockquote>
+</li>
+<li><p><a href="https://code.visualstudio.com/">Visual Studio Code</a></p>
+<blockquote>
+<p>轻量编辑器，各种插件集成后，功能非常强大</p>
+</blockquote>
+</li>
+<li><p><a href="https://www.jetbrains.com/toolbox-app/">JetBrains Toolbox</a></p>
+<blockquote>
+<p>JetBrain全家桶管理工具，方便下载管理JB全家桶</p>
+</blockquote>
+</li>
+<li><p><a href="https://nodejs.org/zh-cn/">Nodejs</a></p>
+<blockquote>
+<p>基于 Chrome V8 引擎 的 JavaScript 运行时环境，前端必备了</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="娱乐"><a href="#娱乐" class="headerlink" title="娱乐"></a>娱乐</h3><ul>
+<li><p><a href="https://mpv.io/">mpv</a></p>
+<blockquote>
+<p>首选！非常简洁干净的高清播放器，使用配置文件设置。备选<a href="https://potplayer.daum.net/">potPlayer</a></p>
+</blockquote>
+</li>
+<li><p><a href="https://y.qq.com/download/download.html">QQ音乐</a></p>
+<blockquote>
+<p>唉~谁让网易云不争气呢！</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+]]></content>
+      <tags>
+        <tag>软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>uniapp开发小程序使用iconfont彩色图标</title>
+    <url>/2021/12/28/uniapp%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BD%BF%E7%94%A8iconfont%E5%BD%A9%E8%89%B2%E5%9B%BE%E6%A0%87/</url>
+    <content><![CDATA[<p>最开始，按照Font class的方式导入iconfont的图标，结果无法展示多色的图标。尝试svg后发现，发现小程序不支持svg标签。<br>目前找到的解决方法如下：  </p>
+<span id="more"></span>  
+<p>借助<a href="https://github.com/HuaRongSAO/iconfont-tools#readme">iconfont-tools</a>工具生成通用的css文件，然后直接导入进项目中，直接使用class名即可。具体使用按照工具说明即可。<br>看了下生成的css，本质是把iconfont的svg转为css，即转为<code>background-image</code>的url中使用data类型数据<code>data:image/svg+xml</code>,也就是说图标为元素的背景。</p>
+]]></content>
+      <tags>
+        <tag>uniapp</tag>
+        <tag>小程序</tag>
+        <tag>微信</tag>
+        <tag>iconfont</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue子组件中antv图表动态更新</title>
+    <url>/2021/11/12/vue%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%ADantv%E5%9B%BE%E8%A1%A8%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0/</url>
+    <content><![CDATA[<p>今天遇到个问题，一进页面，子组件中的antv图表并没有渲染出来。检查理一下发现问题是，父页面异步请求的图表数据，页面渲染完成时antv绘制时还没有获取到数据。  </p>
+<span id="more"></span>
+<p>子组件代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;BatteryStatus&#x27;</span>,</span><br><span class="line">  <span class="attr">props</span>: &#123;</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="built_in">Array</span>,</span><br><span class="line">      <span class="attr">default</span>: <span class="function">() =&gt;</span> []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">chart</span>: <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">watch</span>: &#123;</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">deep</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">immediate</span>: <span class="literal">true</span>,</span><br><span class="line">      handler () &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.chart) &#123;</span><br><span class="line">          <span class="built_in">this</span>.renderChart()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    renderChart () &#123;</span><br><span class="line">      <span class="built_in">this</span>.chart.data(<span class="built_in">this</span>.data)</span><br><span class="line">      <span class="built_in">this</span>.chart.render()</span><br><span class="line">    &#125;,</span><br><span class="line">    initChart () &#123;</span><br><span class="line">      <span class="built_in">this</span>.chart = <span class="keyword">new</span> Chart(&#123;</span><br><span class="line">        <span class="attr">container</span>: <span class="string">&#x27;batteryStatusChart&#x27;</span>,</span><br><span class="line">        <span class="attr">autoFit</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">height</span>: <span class="number">250</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted () &#123;</span><br><span class="line">    <span class="built_in">this</span>.initChart()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解决办法:<br>在子组件的props接受的data数据加上一个监听，数据变化后重新渲染图表</p>
+]]></content>
+      <tags>
+        <tag>antv</tag>
+        <tag>Bug</tag>
+      </tags>
+  </entry>
+</search>
